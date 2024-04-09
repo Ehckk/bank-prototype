@@ -22,26 +22,17 @@ async function fetchData(params) {
     const path = `${FILE_ROOT}/${name}.json` 
     const res = await fetch(path)
     const data = await res.json()
-    console.log(data)
-    const results = sortData(filterData(data, predicate), order)  
-    console.log(results)
-    return data
+    return sortData(filterData(data, predicate), order)  
 }
 
 async function fetchOne(params) {
     const data = await fetchData(params)
-    if (data.length === 0) {
-        throw new Error("Not found")
-    }
-    return data[0]
+    return data.shift()
 }
 
 async function fetchMany(params) {
     const {limit} = params
     const data = await fetchData(params)
-    if (data.length === 0) {
-        throw new Error("Not found")
-    }
     return data.slice(0, limit)
 }
 
