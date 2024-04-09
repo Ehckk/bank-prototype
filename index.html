@@ -22,31 +22,13 @@
     </form>    
 </body>
 <script type="module">
-    import data from './scripts/data.js'
-    import auth from './scripts/auth.js'
+    import { User } from './scripts/models/index.js'
     import form from './scripts/form.js'
 
     const loginSelector = "#login"
     const loginSubmit = await form.submit({
         selector: loginSelector,
-        validate: async (values) => {
-            const {username, password} = values
-            const user = await data.fetchOne({
-                name: "users",
-                predicate: user => {
-                    return user.username === username
-                }
-            })
-            console.log(user)
-            if (!user) {
-                throw new Error(`No user with username '${username}'!`)
-            }
-            if (user.password !== password) {
-                throw new Error("Passwords do not match!")
-            }
-            return user
-        },
-        onSuccess: (user) => auth.login(user)
+        validate: User.authenticate
     })
     console.log(loginSubmit)
     const loginForm = document.querySelector(loginSelector)  
