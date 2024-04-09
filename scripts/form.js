@@ -1,4 +1,4 @@
-async function submit(params) {
+function submit(params) {
     const {selector, validate, onSuccess} = params
 
     const form = document.querySelector(selector)

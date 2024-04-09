@@ -1,11 +1,13 @@
 [
     {
         "id": 1,
+        "name": "Jeff Bezos",
         "username": "TestUser",
         "password": "TestPassword"
     },
     {
         "id": 2,
+        "name": "Elon Musk",
         "username": "TestUser2",
         "password": "TestPassword2"
     }

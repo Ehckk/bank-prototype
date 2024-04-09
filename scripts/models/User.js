@@ -25,8 +25,9 @@ class User extends Model {
         return User(id, username)
     }
 
-    constructor(id, username) {
+    constructor(id, username, name) {
         this.id = id
+        this.name = name
         this.username = username
     }
 }

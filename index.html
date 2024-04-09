@@ -26,12 +26,10 @@
     import form from './scripts/form.js'
 
     const loginSelector = "#login"
-    const loginSubmit = await form.submit({
+    const loginForm = document.querySelector(loginSelector)  
+    loginForm.addEventListener("submit", form.submit({
         selector: loginSelector,
         validate: User.authenticate
-    })
-    console.log(loginSubmit)
-    const loginForm = document.querySelector(loginSelector)  
-    loginForm.addEventListener("submit", loginSubmit)
+    }))
 </script>
 </html>
