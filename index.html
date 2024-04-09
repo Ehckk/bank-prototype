@@ -9,11 +9,14 @@
     <button id="btn">Click</button>
 </body>
 <script type="module">
-    import { fetchData } from './scripts/data.js'
+    import { fetchOne } from './scripts/data.js'
 
     const button = document.querySelector("#btn")
     button.addEventListener("click", async () => {
-        const data = await fetchData({name: "users"})
+        const data = await fetchOne({
+            name: "users",
+            predicate: (user) => user.username === 1
+        })
         console.log(data)
     })
 </script>
