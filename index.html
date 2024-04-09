@@ -6,20 +6,34 @@
     <title>Bank Account</title>
 </head>
 <body>
-    <form action="post" id="login" name="login-form">
-        <input type="text">
+    <form method="get" id="login" name="login-form">
+        <p class="message"></p>
+        <div class="field">
+            <label for="username">Userame</label>
+            <input type="text" name="username" id="username"/>
+        </div>
+        <div class="field">
+            <label for="username">Password</label>
+            <input type="password" name="password" id="password"/>
+        </div>
+        <div class="buttons">
+            <button type="submit">Log In</button>
+        </div>
     </form>    
 </body>
-<!-- script type="module">
+<script type="module">
     import data from './scripts/data.js'
+    import auth from './scripts/auth.js'
 
-    const button = document.querySelector("#btn")
-    button.addEventListener("click", async () => {
-        const user = await data.fetchOne({
-            name: "users",
-            predicate: (user) => user.username === 1
-        })
-        console.log(user)
+    const loginForm = document.querySelector("#login")  
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault()
+        const formValues = new Map()
+        const inputs = e.target.querySelectorAll("input")
+        for (const input of inputs) {
+            data.set(input.name, input.value)
+        } 
+        const formData = Object.fromEntries(formValues.entries())
     })
-</script-->
+</script>
 </html>
