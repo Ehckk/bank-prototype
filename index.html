@@ -9,15 +9,15 @@
     <button id="btn">Click</button>
 </body>
 <script type="module">
-    import { fetchOne } from './scripts/data.js'
+    import data from './scripts/data.js'
 
     const button = document.querySelector("#btn")
     button.addEventListener("click", async () => {
-        const data = await fetchOne({
+        const user = await data.fetchOne({
             name: "users",
             predicate: (user) => user.username === 1
         })
-        console.log(data)
+        console.log(user)
     })
 </script>
 </html>

@@ -1,13 +1,13 @@
 const FILE_ROOT = `data`
 
-async function filterData(data, predicate) {
+function filterData(data, predicate) {
     if (predicate) {
         return data.filter(predicate)
     }
     return data
 }
 
-async function sortData(data, order) {
+function sortData(data, order) {
     if (order) {
         data.sort(order)
     }
@@ -46,7 +46,7 @@ async function fetchMany(params) {
 }
 
 
-export {
+export default {
     fetchOne,
     fetchMany
 }
