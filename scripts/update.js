@@ -19,8 +19,10 @@ if (navbarTitle) {
     }
 
     updaters.push(() => {
-        const regex = new RegExp("^\/?([^\/\n]+)\/?$")
-        const key = regex.exec(window.location.pathname)[1]
+        let key = window.location.pathname
+        if (key.endsWith("/")) {
+            key = key.slice(0, key.length - 1).split("/").pop()
+        }
         console.log(key);
         navbarTitle.textContent = mapping[key]
     })    
