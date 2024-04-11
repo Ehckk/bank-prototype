@@ -20,7 +20,17 @@ class User extends Model {
     }
 
     static getUser() {
-        const data = auth.check()
+        let newPathName = location.pathname
+        if (newPathName.endsWith("/")) {
+            newPathName = newPathName.slice(0, newPathName.length - 1)
+        }
+        newPathName = newPathName.split("/")
+        newPathName.pop()
+        newPathName = newPathName.join("/")
+        const data = auth.check(
+            true,
+            location.origin + newPathName
+        )
         const {id, username, name} = data
         return new User(id, username, name)
     }

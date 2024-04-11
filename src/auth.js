@@ -1,4 +1,4 @@
-function check(isAuthenticated=true, redirect="") {
+function check(isAuthenticated, redirect) {
     const user = window.localStorage.getItem("user")
     const valid = Boolean(user) === isAuthenticated
     if (!valid) {
