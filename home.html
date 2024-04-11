@@ -4,47 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="scripts/init.js" type="module"></script>
-    <script src="scripts/isUnauth.js" type="module"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="components/sidebar.js" defer></script>
+    <link rel="stylesheet" href="styles/style.css">
     <title>My Accounts</title>
 </head>
 <body>
     <main class="dashboard">
-        <div id="sidebar">
-            <div class="sidebar-header">
-                <button id="close-btn">✖</button>
-                <h1>My Bank</h1>
-            </div>
-            <ul class="sidebar-links">
-                <li class="sidebar-item current">
-                    <a href="home.html" class="sidebar-link">View Accounts</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="transfer.html" class="sidebar-link">Make Transfer</a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="" class="sidebar-link">Make Payment</a>
-                </li>
-                <li class="sidebar-item">
-                    <p class="sidebar-info">Contact Us: 203-555-888</p>
-                </li>
-            </ul>
-            <div class="sidebar-content">
-              <p id="name"></p>
-              <div class="buttons">
-                    <button id="logout" class="btn-large">
-                        Log Out
-                    </button>
-                    <script type="module">
-                        import auth from "./src/auth.js"
-        
-                        const logoutBtn = document.querySelector("#logout")
-                        logoutBtn.addEventListener("click", auth.logout)
-                    </script>
-                </div>
-            </div>
-          </div>
-          <div class="navbar">
+        <sidebar-component></sidebar-component>
+        <div class="navbar">
             <div class="wrapper">
                 <div id="menu-btn">
                     <span class="menu-bar"></span>
@@ -57,16 +24,19 @@
         <div class="content" id="dashboard-content">
             <!--Spinner-->
         </div>
-    </main>
-    <script src="scripts/sidebar.js"></script>
-    <script type="module">
-        import { User } from "./src/models/index.js"
+        <script type="module">
+            import data from "./src/data.js"
+            import { User } from "./src/models/index.js"
 
-        const user = User.getUser()
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log(user)
-            document.querySelector("#name").textContent = "Logged in as " + user.name
-        })
-    </script>
+            function updateSidebar() {
+                const user = User.getUser()
+                const name = document.querySelector("#name")
+                name.textContent = "Logged in as " + user.name
+            }
+
+            data.update(updateSidebar)
+        </script>
+    </main>
+    <script src="scripts/sidebar.js" defer></script>
 </body>
 </html>
