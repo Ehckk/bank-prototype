@@ -65,9 +65,18 @@ async function init() {
     await reload()
 }
 
+function update(refresh) {
+    document.addEventListener("DOMContentLoaded", () => {
+        const payload = window.localStorage.getItem("data")
+        const data = JSON.parse(payload)
+        refresh(data)
+    })
+}
+
 export default {
     fetchOne,
     fetchMany,
     reload,
-    init
+    init,
+    update
 }

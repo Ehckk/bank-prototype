@@ -1,6 +1,7 @@
 function check(isAuthenticated=true, redirect="/") {
     const user = window.localStorage.getItem("user")
     const valid = Boolean(user) === isAuthenticated
+    console.log(valid)
     if (!valid) {
         window.location.replace(redirect)
     }

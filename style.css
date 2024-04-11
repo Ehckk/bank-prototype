@@ -175,7 +175,7 @@ main.dashboard {
 	background-color: var(--d-1);
 }
 
-.sidebar-link {
+.sidebar-link, .sidebar-info {
 	text-align: center;
 	display: block;
 	padding: 0.5rem;  
