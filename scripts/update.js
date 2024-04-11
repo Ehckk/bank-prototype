@@ -19,7 +19,6 @@ if (navbarTitle) {
     }
 
     updaters.push(() => {
-        console.log(window.location.pathname)
         navbarTitle.textContent = mapping[window.location.pathname]
     })    
 }

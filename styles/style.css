@@ -266,7 +266,7 @@ form {
 }
 
 .error-text{
-	font-weight: bold;
+	font-weight: bolder;
 	color: var(--e-0);
 }
 
@@ -274,6 +274,37 @@ form {
 	background-color: var(--e-0);
 }
 
+.success-text {
+	font-weight: bolder;
+	color: var(--s-0);
+}
+
 .success {
 	background-color: var(--s-0);
+}
+
+table {
+	border: 2px solid var(--d-1);
+	border-collapse: collapse;
+}
+
+td {
+	text-align: center;
+}
+
+thead {
+	background-color: var(--d-1);
+	color: var(--l-2);
+}
+
+th {
+	font-weight: bold;
+}
+
+tr {
+	border: 1px solid var(--l-0);
+}
+
+tbody {
+	background-color: var(--l-1);
 }

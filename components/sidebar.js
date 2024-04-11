@@ -11,7 +11,7 @@ class Sidebar extends HTMLElement {
                     <h1>My Bank</h1>
                 </div>
                 <ul class="sidebar-links">
-                    <li class="sidebar-item current">
+                    <li class="sidebar-item">
                         <a href="home.html" class="sidebar-link">View Accounts</a>
                     </li>
                     <li class="sidebar-item">
@@ -27,12 +27,6 @@ class Sidebar extends HTMLElement {
                         <button id="logout" class="btn-large">
                             Log Out
                         </button>
-                        <script type="module">
-                            import auth from "./src/auth.js"
-
-                            const logoutBtn = document.querySelector("#logout")
-                            logoutBtn.addEventListener("click", auth.logout)
-                        </script>
                     </div>
                 </div>
             </div>

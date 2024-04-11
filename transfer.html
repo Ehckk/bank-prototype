@@ -6,6 +6,7 @@
     <script src="scripts/init.js" type="module"></script>
     <script src="components/sidebar.js" type="module"></script>
     <script src="components/navbar.js" type="module"></script>
+    <script src="scripts/logout.js" type="module" defer></script>
     <link rel="stylesheet" href="styles/style.css">
     <title>My Transfers</title>
 </head>
@@ -21,36 +22,63 @@
             <div class="content-header">
                 <h2>History</h2>
             </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Account</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="transfers">
+
+                </tbody>
+            </table>
         </div>
         <script type="module">
-            import { User, Account } from "./src/models/index.js"
-            const content = document.querySelector("#dashboard-content")
+            import { User, Account, Transfer } from "./src/models/index.js"
+            const content = document.querySelector("#transfers")
             const user = User.getUser()
-            const accounts = await Account.getAll({
-                name: "accounts",
-                predicate: (account) => account.user_id === user.id
+            const transfers = await Transfer.getAll({
+                name: "transfers",
+                predicate: (transfer) => transfer.user_id === user.id
             })
-            console.log(accounts)
-            for (const account of accounts) {
-                const card = document.createElement("div")
-                card.classList.add("card")
-                const {id, alias, type, num} = account
-                card.innerHTML = `
-                    <details>
-                        <summary>${alias}</summary>
-                        <div class="card-details">
-                            <div slot="info">
-                                <p>${type}</p>
-                                <p>${Account.censorNum(num)}</p>
-                            </div>
-                            <div class="card-buttons">
-                                <button class="btn-small secondary">Rename</button>
-                                <button class="btn-small">View</button>
-                            </div>
-                        </div>
-                    </details>
+            console.log(transfers)
+            for (const transferData of transfers) {
+                const row = document.createElement("tr")
+                const {id, user_id, account_id, type, amount, datetime} = transferData
+                
+                const accountData = await Account.getOne({
+                    name: "accounts",
+                    predicate: (account) => account.id === account_id
+                })
+                
+                const account = new Account(
+                    accountData.id, 
+                    accountData.user_id,
+                    accountData.alias,
+                    accountData.type,
+                    accountData.num 
+                )
+
+                const transfer = new Transfer(
+                    id, 
+                    user_id, 
+                    account,
+                    type, 
+                    amount, 
+                    datetime
+                )
+                row.innerHTML = `
+                    <td>${transfer.date}</td>
+                    <td>${transfer.time}</td>
+                    <td>${transfer.account.alias}</td>
+                    <td class="${Transfer.style(type)}">${type}</td>
+                    <td>${transfer.amount}</td>
                 `
-                content.appendChild(card)
+                content.appendChild(row)
             }
         </script>
         <script src="scripts/update.js" type="module"></script>
