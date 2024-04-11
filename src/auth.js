@@ -13,7 +13,7 @@ function check(isAuthenticated=true, redirect="/") {
 function login(user) {
     const data = JSON.stringify(user)
     window.localStorage.setItem("user", data)
-    window.location.replace("/home.html")
+    window.location.replace("/home")
 }
 
 function logout() {
