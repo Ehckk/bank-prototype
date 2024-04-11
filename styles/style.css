@@ -13,6 +13,8 @@
 	--l-0: hsl(0 0% 80%);
 	--d-1: hsl(0 0% 16%);
 	--d-0: hsl(0 0% 10%);
+	--e-0: hsl(0 70% 40%);
+	--s-0: hsl(140 70% 40%);
 }
 
 html {
@@ -264,5 +266,13 @@ form {
 
 .error-text{
 	font-weight: bold;
-	color: hsl(0 70% 50%);
+	color: var(--e-0);
+}
+
+.error {
+	background-color: var(--e-0);
+}
+
+.success {
+	background-color: var(--s-0);
 }
