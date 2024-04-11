@@ -1,4 +1,4 @@
-function check(isAuthenticated=true, redirect="/") {
+function check(isAuthenticated=true, redirect="..") {
     const user = window.localStorage.getItem("user")
     const valid = Boolean(user) === isAuthenticated
     if (!valid) {
@@ -18,7 +18,7 @@ function login(user) {
 
 function logout() {
     window.localStorage.removeItem("user")
-    window.location.replace("/")
+    window.location.replace("..")
 }
 
 export default {
