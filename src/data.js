@@ -1,5 +1,10 @@
 const FILE_ROOT = `data`
 
+const names = new Set([
+    "users",
+    "accounts"
+])
+
 function filterData(data, predicate) {
     if (predicate) {
         return data.filter(predicate)
@@ -17,12 +22,15 @@ function sortData(data, order) {
 async function fetchData(params) {
     const {name, predicate, order} = params
     if (!name) {
-        throw new Error("Must specify file name to fetch from")
+        throw new Error("Must name to fetch from")
     } 
-    const path = `${FILE_ROOT}/${name}.json` 
-    const res = await fetch(path)
-    const data = await res.json()
-    return sortData(filterData(data, predicate), order)  
+    if (!names.has(name)) {
+        throw new Error("Invalid name")
+    }
+    const payload = window.localStorage.getItem("data")
+    const data = JSON.parse(payload)
+    const result = data[name]
+    return sortData(filterData(result, predicate), order)  
 }
 
 async function fetchOne(params) {
@@ -36,8 +44,30 @@ async function fetchMany(params) {
     return data.slice(0, limit)
 }
 
+async function reload() {
+    const cache = new Map()
+    window.localStorage.removeItem("data")
+    for (const name of names.values()) {
+        const path = `${FILE_ROOT}/${name}.json` 
+        const res = await fetch(path)
+        const data = await res.json()
+        cache.set(name, data)
+    }
+    const obj = Object.fromEntries(cache.entries())
+    window.localStorage.setItem("data", JSON.stringify(obj))
+}
+
+async function init() {
+    const data = window.localStorage.getItem("data")
+    if (data) {
+        return
+    }
+    await reload()
+}
 
 export default {
     fetchOne,
-    fetchMany
+    fetchMany,
+    reload,
+    init
 }
