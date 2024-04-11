@@ -262,6 +262,7 @@ form {
 
 .field {
 	display: grid;
+	align-items: center;
 	grid-template-columns: 5rem 1fr;
 }
 
@@ -286,6 +287,7 @@ form {
 table {
 	border: 2px solid var(--d-1);
 	border-collapse: collapse;
+	font-size: 1rem;
 }
 
 td {
@@ -307,4 +309,12 @@ tr {
 
 tbody {
 	background-color: var(--l-1);
+}
+
+input {
+	appearance: none;
+	border: 2px solid var(--l-0);
+	border-radius: .25rem;
+	padding: .25rem;
+	font-size: 1rem;
 }
