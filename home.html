@@ -6,6 +6,7 @@
     <script src="scripts/init.js" type="module"></script>
     <script src="components/sidebar.js" type="module"></script>
     <script src="components/navbar.js" type="module"></script>
+</main>
     <link rel="stylesheet" href="styles/style.css">
     <title>My Accounts</title>
 </head>
@@ -13,34 +14,41 @@
     <main class="dashboard">
         <sidebar-component></sidebar-component>
         <navbar-component></navbar-component>
-        <template id="account-card">
-            <div class="card">
-                <details>
-                    <summary>Retirement</summary>
-                    <div class="card-details">
-                        <p>Savings</p>
-                        <p>****-****-****-8347</p>
-                    </div>
-                    <div class="card-buttons">
-                        <button class="btn-small secondary">Rename</button>
-                        <button class="btn-small">View</button>
-                    </div>
-                </details>
-            </div>
-        </template>
         <div class="content" id="dashboard-content">
-            <!--Spinner-->
-            <button class="btn-card">
-                +
-            </button>
+            <button class="btn-card">+</button>
         </div>
+        <script type="module">
+            import { User, Account } from "./src/models/index.js"
+            const content = document.querySelector("#dashboard-content")
+            const user = User.getUser()
+            const accounts = await Account.getAll({
+                name: "accounts",
+                predicate: (account) => account.user_id === user.id
+            })
+            console.log(accounts)
+            for (const account of accounts) {
+                const card = document.createElement("div")
+                card.classList.add("card")
+                const {id, alias, type, num} = account
+                card.innerHTML = `
+                    <details>
+                        <summary>${alias}</summary>
+                        <div class="card-details">
+                            <div slot="info">
+                                <p>${type}</p>
+                                <p>${Account.censorNum(num)}</p>
+                            </div>
+                            <div class="card-buttons">
+                                <button class="btn-small secondary">Rename</button>
+                                <button class="btn-small">View</button>
+                            </div>
+                        </div>
+                    </details>
+                `
+                content.appendChild(card)
+            }
+        </script>
         <script src="scripts/update.js" type="module"></script>
         <script src="scripts/toggleSidebar.js" defer></script>
-        <script type="module">
-            const content = document.querySelector("#dashboard-content")
-            const accountCard = document.querySelector("#account-card").content
-            content.appendChild(accountCard)
-        </script>
-    </main>
 </body>
 </html>

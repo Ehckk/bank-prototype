@@ -110,6 +110,11 @@ main.dashboard {
 	border-radius: 0.5rem;
 }
 
+.card-details {
+	display: flex;
+	justify-content: space-between;
+}
+
 .card > details > summary {
 	font-size: 1.25rem;
 	font-weight: 700;
