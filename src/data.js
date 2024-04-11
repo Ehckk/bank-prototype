@@ -65,11 +65,13 @@ async function init() {
     await reload()
 }
 
-function update(refresh) {
+function update(refreshes) {
     document.addEventListener("DOMContentLoaded", () => {
         const payload = window.localStorage.getItem("data")
         const data = JSON.parse(payload)
-        refresh(data)
+        for (const refresh of refreshes) {            
+            refresh(data)
+        }
     })
 }
 

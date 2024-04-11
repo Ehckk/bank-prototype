@@ -4,39 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="scripts/init.js" type="module"></script>
-    <script src="components/sidebar.js" defer></script>
+    <script src="components/sidebar.js" type="module"></script>
+    <script src="components/navbar.js" type="module"></script>
     <link rel="stylesheet" href="styles/style.css">
     <title>My Accounts</title>
 </head>
 <body>
     <main class="dashboard">
         <sidebar-component></sidebar-component>
-        <div class="navbar">
-            <div class="wrapper">
-                <div id="menu-btn">
-                    <span class="menu-bar"></span>
-                    <span class="menu-bar"></span>
-                    <span class="menu-bar"></span>
-                </div>
-                <h1 class="nav-title">My Bank</h1>
-            </div>
-        </div>
+        <navbar-component></navbar-component>
         <div class="content" id="dashboard-content">
             <!--Spinner-->
         </div>
-        <script type="module">
-            import data from "./src/data.js"
-            import { User } from "./src/models/index.js"
-
-            function updateSidebar() {
-                const user = User.getUser()
-                const name = document.querySelector("#name")
-                name.textContent = "Logged in as " + user.name
-            }
-
-            data.update(updateSidebar)
-        </script>
+        <script src="scripts/update.js" type="module"></script>
+        <script src="scripts/toggleSidebar.js" defer></script>
     </main>
-    <script src="scripts/sidebar.js" defer></script>
 </body>
 </html>

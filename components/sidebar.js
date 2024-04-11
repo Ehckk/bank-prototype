@@ -18,9 +18,6 @@ class Sidebar extends HTMLElement {
                         <a href="transfer.html" class="sidebar-link">Make Transfer</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="" class="sidebar-link">Make Payment</a>
-                    </li>
-                    <li class="sidebar-item">
                         <p class="sidebar-info">Contact Us: 203-555-888</p>
                     </li>
                 </ul>
