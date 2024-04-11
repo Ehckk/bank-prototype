@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Account</title>
+    <script type="module"></script>
 </head>
 <body>
     <form method="get" id="login" name="login-form">
@@ -22,8 +23,8 @@
     </form>    
 </body>
 <script type="module">
-    import { User } from './scripts/models/index.js'
-    import form from './scripts/form.js'
+    import { User } from './src/models/index.js'
+    import form from './src/form.js'
 
     const loginSelector = "#login"
     const loginForm = document.querySelector(loginSelector)  

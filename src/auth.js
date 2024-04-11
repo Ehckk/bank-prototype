@@ -4,6 +4,10 @@ function check(isAuthenticated=true, redirect="/") {
     if (!valid) {
         window.location.replace(redirect)
     }
+    if (isAuthenticated) {
+        const data = JSON.parse(user)
+        return data
+    }
 }
 
 function login(user) {
@@ -17,18 +21,8 @@ function logout() {
     window.location.replace("/")
 }
 
-function currentUser() {
-    const user = window.localStorage.getItem("user")
-    if (!user) {
-        window.location.replace("/")
-    }   
-    const data = JSON.parse(user)
-    return data
-}
-
 export default {
     check,
     login,
-    logout,
-    currentUser
+    logout
 }

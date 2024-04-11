@@ -20,15 +20,16 @@ class User extends Model {
     }
 
     static getUser() {
-        const data = auth.currentUser()
-        const {id, username} = data
-        return User(id, username)
+        const data = auth.check()
+        const {id, username, name} = data
+        return new User(id, username, name)
     }
 
     constructor(id, username, name) {
+        super()
         this.id = id
-        this.name = name
         this.username = username
+        this.name = name
     }
 }
 

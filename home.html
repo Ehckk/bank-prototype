@@ -4,12 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account</title>
-    <script type="module">
-        import auth from "./scripts/auth.js"
-
-        auth.check()
-    </script>
 </head>
 <body>
+    <main id="main">
+        <nav>
+            <button id="logout">Log Out</button>
+            <script type="module">
+                import auth from "./src/auth.js"
+
+                const logoutBtn = document.querySelector("#logout")
+                logoutBtn.addEventListener("click", () => auth.logout)
+            </script>
+        </nav>
+        <main id="content">
+            <!--Spinner-->
+        </main>
+    </main>
+    <script type="module">
+        import { User } from "./src/models/index.js"
+
+        const user = User.getUser()
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log(user)
+        })
+    </script>
 </body>
 </html>
