@@ -225,6 +225,12 @@ button.secondary {
 	font-size: 1rem;
 }
 
+.btn-card {
+	background-color: var(--d-1);
+	padding: .25rem .5rem;
+	font-size: 1.5rem;
+}
+
 #close-btn {
 	width: 2rem;
 	height: 2rem;
