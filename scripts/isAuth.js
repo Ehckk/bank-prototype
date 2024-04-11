@@ -1,3 +1,3 @@
 import auth from "../src/auth.js"
 
-auth.check(false, "home.html")
+auth.check(false, "/home")

@@ -14,12 +14,15 @@ if (sidebarName) {
 const navbarTitle = document.querySelector("#title")
 if (navbarTitle) {
     const mapping = {
-        "/home.html": "My Accounts",
-        "/transfer.html": "Transfers"
+        "home": "My Accounts",
+        "transfer": "Transfers"
     }
 
     updaters.push(() => {
-        navbarTitle.textContent = mapping[window.location.pathname]
+        const regex = new RegExp("^\/?([^\/\n]+)\/?$")
+        const key = regex.exec(window.location.pathname)[1]
+        console.log(key);
+        navbarTitle.textContent = mapping[key]
     })    
 }
 
