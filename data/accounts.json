@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "user_id": 1,
+        "alias": "Main Checking",
+        "type": "Checking",
+        "account_number": "9463-5863-3488-5479"
+    },
+    {
+        "id": 2,
+        "use_id": 1,
+        "alias": "Personal Savings",
+        "type": "Savings",
+        "num": "8734-6094-3497-3985"
+    },
+    {
+        "user": 1,
+        "alias": "Timmy College Fund",
+        "type": "Savings",
+        "account_number": "2945-8672-8346-2945"
+    },
+    {
+        "id": 4,
+        "user_id": 1,
+        "alias": "Timmy Checking",
+        "type": "Checking",
+        "account_number": "8652-0934-2137-1284"
+    },
+    {
+        "id": 4,
+        "user_id": 1,
+        "alias": "Retirement Fund",
+        "type": "Savings",
+        "account_number": "5439-9348-5241-8347"
+    }
+]
