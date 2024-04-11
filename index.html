@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Account</title>
     <script type="module"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form method="get" id="login" name="login-form">
-        <p id="message"></p>
-        <div class="field">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username"/>
+    <main class="auth">
+        <div class="credentials">
+            <form method="get" id="login" name="login-form">
+                <h1>Log In</h1>
+                <p id="message" class="error-text"></p>
+                <div class="fields">
+                    <div class="field">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username"/>
+                    </div>
+                    <div class="field">
+                        <label for="username">Password</label>
+                        <input type="password" name="password" id="password"/>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="btn-large" type="submit">
+                        Log In
+                    </button>
+                </div>
+            </form>    
         </div>
-        <div class="field">
-            <label for="username">Password</label>
-            <input type="password" name="password" id="password"/>
-        </div>
-        <div class="buttons">
-            <button type="submit">Log In</button>
-        </div>
-    </form>    
+    </main>
 </body>
 <script type="module">
     import { User } from './src/models/index.js'

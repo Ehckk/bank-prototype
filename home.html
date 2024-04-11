@@ -4,28 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main id="main">
-        <nav>
-            <button id="logout">Log Out</button>
-            <script type="module">
-                import auth from "./src/auth.js"
-
-                const logoutBtn = document.querySelector("#logout")
-                logoutBtn.addEventListener("click", () => auth.logout)
-            </script>
-        </nav>
-        <main id="content">
+    <main class="dashboard">
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <button id="close-btn">
+                    ✖
+                </button>
+                <h1>My Bank</h1>
+            </div>
+            <ul class="sidebar-links">
+              <li class="sidebar-item current">
+                <a href="" class="sidebar-link">
+                    View Accounts
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="" class="sidebar-link">
+                  Make Transfer
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="" class="sidebar-link">
+                  Make Payment
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="" class="sidebar-link">
+                  View Investments
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="" class="sidebar-link">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+            <div class="sidebar-content">
+              <p id="name"></p>
+              <div class="buttons">
+                    <button id="logout" class="btn-large">
+                        Log Out
+                    </button>
+                    <script type="module">
+                        import auth from "./src/auth.js"
+        
+                        const logoutBtn = document.querySelector("#logout")
+                        logoutBtn.addEventListener("click", auth.logout)
+                    </script>
+                </div>
+            </div>
+          </div>
+          <div class="navbar">
+            <div class="wrapper">
+                <div id="menu-btn">
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                </div>
+                <h1 class="nav-title">My Bank</h1>
+            </div>
+        </div>
+        <div class="content" id="dashboard-content">
             <!--Spinner-->
-        </main>
+        </div>
     </main>
+    <script src="scripts/sidebar.js"></script>
     <script type="module">
         import { User } from "./src/models/index.js"
 
         const user = User.getUser()
         document.addEventListener("DOMContentLoaded", () => {
             console.log(user)
+            document.querySelector("#name").textContent = "Logged in as " + user.name
         })
     </script>
 </body>
