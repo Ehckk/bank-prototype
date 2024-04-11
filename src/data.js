@@ -2,7 +2,8 @@ const FILE_ROOT = `data`
 
 const names = new Set([
     "users",
-    "accounts"
+    "accounts",
+    "transfers"
 ])
 
 function filterData(data, predicate) {
